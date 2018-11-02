@@ -3,6 +3,8 @@
 require 'bundler/setup'
 require 'model_auditor'
 
+require 'model_auditor_mocks'
+
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure
   config.example_status_persistence_file_path = '.rspec_status'
