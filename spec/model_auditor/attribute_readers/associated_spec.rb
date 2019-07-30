@@ -14,4 +14,16 @@ RSpec.describe ModelAuditor::AttributeReaders::Associated do
 
     expect(subject.value).to eq user_title
   end
+
+  it 'should not fail if model does not define :title method' do
+    expect { user.title }.to raise_error(NoMethodError)
+    expect(subject.value).to eq user.name
+  end
+
+  it 'should fallback to model id if model does not define :title or :name' do
+    expect { user.title }.to raise_error(NoMethodError)
+    user.name = nil
+
+    expect(subject.value).to eq user.id
+  end
 end
